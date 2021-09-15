@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Car from "./Car/Car";
+
+class App extends Component {
+
+
+
+    render() {
+
+        return (
+            <div className="App" style={ {color: 'blue', fontSize: '20px'} }>
+                <h1>Hello World</h1>
+
+                <Car name={'Ford'} year={2018}/>
+                <Car name='Audi' year={2016}>
+                    <p style={{color: 'red'}}>color</p>
+                </Car>
+            </div>
+        );
+
+        // Це еквівалент.
+        // return React.createElement(
+        //     'div',
+        //     {className: 'App'},
+        //     React.createElement('h1', null, 'Hello World')
+        // )
+    }
 }
 
 export default App;
