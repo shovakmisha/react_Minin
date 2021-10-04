@@ -52,22 +52,28 @@ class App extends Component {
 
                 <button onClick={this.toggleCarsHandler}>Toggle cars</button>
 
-                {
-                    (this.state.showCars) ?
-                        this.state.cars.map((car, index) => {
-                            return (
-                                <Car
-                                    key={index}
-                                    name={car.name}
-                                    year={car.year}
-                                    onChangeName={event => this.onChangeName(event, index)}
-                                    onDelete={this.onDelete.bind(this, index)}
-                                />
-                            )
-                        })
-                    :
-                    false
-                }
+                <div style={{
+                    width: 400,
+                    margin: '20px auto 0'
+                }}>
+                    {
+                        (this.state.showCars) ?
+                            this.state.cars.map((car, index) => {
+                                return (
+                                    <Car
+                                        key={index}
+                                        name={car.name}
+                                        year={car.year}
+                                        onChangeName={event => this.onChangeName(event, index)}
+                                        onDelete={this.onDelete.bind(this, index)}
+                                    />
+                                )
+                            })
+                            :
+                            false
+                    }
+                </div>
+
             </div>
         );
     }
