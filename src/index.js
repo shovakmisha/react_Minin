@@ -6,7 +6,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App title="My super title" />
   </React.StrictMode>,
   document.getElementById('root')
 );

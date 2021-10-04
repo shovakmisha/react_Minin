@@ -5,13 +5,19 @@ import Car from "./Car/Car";
 
 class App extends Component {
 
-    state = {
-        cars: [
-            {name: 'Ford', year: 2018},
-            {name: 'Audi', year: 2016}
-        ],
-        pageTitle: 'React components',
-        showCars: false
+    constructor(props) {
+        super(props)
+
+        console.log('Це виконається найскоріше. Але це не реактівська ф-ція. Це метод самого js')
+
+        this.state = {
+            cars: [
+                {name: 'Ford', year: 2018},
+                {name: 'Audi', year: 2016}
+            ],
+            pageTitle: 'React components',
+            showCars: false
+        }
     }
 
     onDelete (index)  {
@@ -44,11 +50,17 @@ class App extends Component {
         });
     }
 
+    componentWillMount () {
+        console.log('викликається при створенні компонента');
+    }
+
     render() {
 
         return (
             <div className="App" style={ {color: 'blue', fontSize: '20px'} }>
-                <h1>{this.state.pageTitle}</h1>
+                {/*<h1>{this.state.pageTitle}</h1>*/}
+
+                <h1>{this.props.title}</h1>
 
                 <button onClick={this.toggleCarsHandler}>Toggle cars</button>
 
@@ -76,6 +88,10 @@ class App extends Component {
 
             </div>
         );
+    }
+
+    componentDidMount() {
+        console.log('викликається після рендеринга');
     }
 }
 
