@@ -14,44 +14,60 @@ class App extends Component {
         showCars: false
     }
 
-    changeTitleHandler = (newTitle = 'Default') => {
+    onDelete (index)  {
+        let cars = [...this.state.cars]; // клоную масив
+
+        cars = cars.slice(index, 1);
 
         this.setState({
-            pageTitle: newTitle
+            cars
         });
     }
 
-    handleInput = (event) => {
-        // console.log(event.target.value);
+    onChangeName = (event, index) => {
+
+        let cars = this.state.cars.concat(); // concat() тому що в ыдеалы щоб скопыювати масив, треба його клонувати, а не просто занести в іншу змінну
+
+        // Можна ще так склонувати
+        // let cars = [...this.state.cars]
+
+        cars[index].name = event.target.value;
+
         this.setState({
-            pageTitle: event.target.value
-        })
+            cars // по новому синтаксису js
+        });
+    }
+
+    toggleCarsHandler = () => {
+        this.setState({
+            showCars: !this.state.showCars
+        });
     }
 
     render() {
-
-        const cars = this.state.cars;
 
         return (
             <div className="App" style={ {color: 'blue', fontSize: '20px'} }>
                 <h1>{this.state.pageTitle}</h1>
 
-                <input onChange={this.handleInput} type="text"/>
+                <button onClick={this.toggleCarsHandler}>Toggle cars</button>
 
-                <button
-                    onClick={this.changeTitleHandler.bind(this, 'new Changed')}
-                >Change title</button>
-
-                {this.state.cars.map((car, index) => {
-                    return (
-                        <Car
-                            key={index}
-                            name={car.name}
-                            year={car.year}
-                            onChangeTitle={() => this.changeTitleHandler.bind(this, car.name)}
-                        />
-                    )
-                })}
+                {
+                    (this.state.showCars) ?
+                        this.state.cars.map((car, index) => {
+                            return (
+                                <Car
+                                    key={index}
+                                    name={car.name}
+                                    year={car.year}
+                                    onChangeName={event => this.onChangeName(event, index)}
+                                    onDelete={this.onDelete.bind(this, index)}
+                                />
+                            )
+                        })
+                    :
+                    false
+                }
             </div>
         );
     }
