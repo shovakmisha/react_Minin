@@ -13,7 +13,8 @@ class App extends Component {
         this.state = {
             cars: [
                 {name: 'Ford', year: 2018},
-                {name: 'Audi', year: 2016}
+                {name: 'Audi', year: 2016},
+                {name: 'Mazda', year: 2010}
             ],
             pageTitle: 'React components',
             showCars: false
@@ -23,7 +24,7 @@ class App extends Component {
     onDelete (index)  {
         let cars = [...this.state.cars]; // клоную масив
 
-        cars = cars.slice(index, 1);
+        cars.splice(index, 1);
 
         this.setState({
             cars
@@ -32,7 +33,7 @@ class App extends Component {
 
     onChangeName = (event, index) => {
 
-        let cars = this.state.cars.concat(); // concat() тому що в ыдеалы щоб скопыювати масив, треба його клонувати, а не просто занести в іншу змінну
+        let cars = this.state.cars.concat(); // concat() тому що в ідеалі щоб скопіювати масив, треба його клонувати, а не просто занести в іншу змінну
 
         // Можна ще так склонувати
         // let cars = [...this.state.cars]
@@ -81,8 +82,8 @@ class App extends Component {
                                     />
                                 )
                             })
-                            :
-                            false
+                        :
+                        false
                     }
                 </div>
 
